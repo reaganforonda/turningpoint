@@ -1,4 +1,6 @@
 import React from 'react';
+import * as util from '../../utilities/utilities';
+import axios from 'axios';
 
 export default class RegisterForm extends React.Component{
     constructor(props){
@@ -34,6 +36,23 @@ export default class RegisterForm extends React.Component{
     handleFormSubmit(e) {
         e.preventDefault();
         let user = Object.assign({}, this.state);
+
+        if(!util.validateEmail(this.state.email)){
+            // TODO:
+            console.log('Invalid Email');
+        };
+
+        if(this.state.pw !== this.state.confirmPW){
+            // TODO:
+            console.log('Passwords must match')
+        } else {
+            axios.post('/api/auth/register', user).then((result) => {
+                // TODO:
+                console.log(result);
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
     }
 
     render(){
