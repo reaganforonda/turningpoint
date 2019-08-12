@@ -6,6 +6,8 @@ const massive = require('massive');
 const session = require('express-session');
 const app = express();
 
+const authController = require('./controllers/authController');
+
 dotenv.config();
 
 const {
@@ -33,7 +35,7 @@ app.use (
 
 
 /*****ENDPOINTS*****/
-
+app.post('/api/auth/register', authController.register);
 
 
 
