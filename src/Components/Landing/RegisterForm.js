@@ -11,7 +11,8 @@ export default class RegisterForm extends React.Component{
             firstName: '',
             lastName: '',
             pw: '',
-            confirmPW:''
+            confirmPW:'',
+            displayPWMatchError: false
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -29,7 +30,8 @@ export default class RegisterForm extends React.Component{
             firstName: '',
             lastName: '',
             pw: '',
-            confirmPW:''
+            confirmPW:'',
+            displayPWMatchError: false
         })
     }
 
@@ -44,11 +46,13 @@ export default class RegisterForm extends React.Component{
 
         if(this.state.pw !== this.state.confirmPW){
             // TODO:
+            this.setState({displayPWMatchError: true});
             console.log('Passwords must match')
         } else {
             axios.post('/api/auth/register', user).then((result) => {
                 // TODO:
                 console.log(result);
+                this.resetForm();
             }).catch((err) => {
                 console.log(err);
             })
@@ -80,6 +84,9 @@ export default class RegisterForm extends React.Component{
                 <div>
                     <input placeholder='Confirm Password' name='confirmPW' type='password' value={this.state.confirmPW} 
                         onChange={(e) => this.handleInputChange(e)} />
+                    {
+                        !this.state.displayPWMatchError ? null : <p>Passwords do not match</p>
+                    }
                 </div>
                 <div>
                     <button onClick={(e) => this.handleFormSubmit(e)}>Create Account</button>
