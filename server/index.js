@@ -29,9 +29,9 @@ app.use (
     })
 )
 
-// massive(CONNECTION_STRING).then((dbInstance) => {
-//     app.set('db', dbInstance);
-// });
+massive(CONNECTION_STRING).then((dbInstance) => {
+    app.set('db', dbInstance);
+});
 
 
 /*****ENDPOINTS*****/
