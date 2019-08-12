@@ -14,7 +14,7 @@ module.exports = {
             res.sendStatus(400);
         }
 
-        db.GET_EMAILS([email.toLowerCase()]).then((users) => {
+        await db.GET_EMAILS([email.toLowerCase()]).then((users) => {
             if(users.length !== 0) {
                 if(users[0].email === email.toLowerCase()) {
                     res.sendStatus(400);
@@ -36,7 +36,27 @@ module.exports = {
             console.log(`Error while attempting to get emials: ${err}`)
             res.sendStatus(500);
         });
+    },
 
+    login: (req, res) => {
+        const db = req.app.get('db');
+        const {email, pw} = req.body;
 
+        db.GET_EMAILS([email]).then((users) => {
+            if(users.length === 0) {
+                res.sendStatus(422);
+            } else {
+                const userPW = users[0].user_pw;
+                const confirmedPW = bcrypt.compareSync(pw, userPW);
+
+                if(confirmedPW){
+                    res.sendStatus(200);
+                    console.log(ok);
+                }
+            }
+        }).catch((err)=> {
+            console.log(`Server error while attempting to get emails: ${err}`);
+            res.sendStatus(500);
+        })
     }
 }
