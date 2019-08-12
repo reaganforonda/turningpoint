@@ -14,6 +14,7 @@ export default class RegisterForm extends React.Component{
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.resetForm = this.resetForm.bind(this);
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
 
     handleInputChange(e) {
@@ -30,9 +31,14 @@ export default class RegisterForm extends React.Component{
         })
     }
 
+    handleFormSubmit(e) {
+        e.preventDefault();
+        let user = Object.assign({}, this.state);
+    }
+
     render(){
         return (
-            <form>
+            <form onSubmit={(e) => this.handleFormSubmit(e)}>
                 <div>
                     <h2>Create An Account</h2>
                 </div>
@@ -55,6 +61,9 @@ export default class RegisterForm extends React.Component{
                 <div>
                     <input placeholder='Confirm Password' name='confirmPW' type='password' value={this.state.confirmPW} 
                         onChange={(e) => this.handleInputChange(e)} />
+                </div>
+                <div>
+                    <button onClick={(e) => this.handleFormSubmit(e)}>Create Account</button>
                 </div>
             </form>
         )
