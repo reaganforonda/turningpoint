@@ -1,5 +1,5 @@
 import React from 'react';
-
+import RegisterForm from './RegisterForm';
 
 export default class Landing extends React.Component{
     constructor(props) {
@@ -14,6 +14,7 @@ export default class Landing extends React.Component{
         return (
             <div>
                 Landing
+                <RegisterForm/>
             </div>
         )
     }
