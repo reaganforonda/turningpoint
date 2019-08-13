@@ -1,5 +1,6 @@
 import React from 'react';
 import * as util from '../../utilities/utilities';
+import axios from 'axios';
 
 export default class LoginForm extends React.Component{
     constructor(props) {
@@ -22,7 +23,12 @@ export default class LoginForm extends React.Component{
         e.preventDefault();
 
         if(util.validateEmail(this.state.email) && this.state.pw !== '') {
-            
+            let user = Object.assign({}, this.state);
+
+            axios.post('/api/auth/login', user).then((result) => {
+                console.log('result');
+                // TODO:
+            })
         } else {
             // TODO:
         }

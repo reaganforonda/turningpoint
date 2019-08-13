@@ -51,7 +51,7 @@ module.exports = {
 
                 if(confirmedPW){
                     res.sendStatus(200);
-                    console.log(ok);
+                    console.log('ok');
                 }
             }
         }).catch((err)=> {
