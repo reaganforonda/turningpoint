@@ -9,7 +9,8 @@ export class LoginForm extends React.Component{
 
         this.state = {
             email:'',
-            pw: ''
+            pw: '',
+            displayLoginError: false
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -30,10 +31,20 @@ export class LoginForm extends React.Component{
                 console.log('result');
                 this.props.history.push('/dashboard');
                 // TODO:
+            }).catch((err) => {
+                this.setState({displayLoginError: true});
             })
         } else {
             // TODO:
         }
+    }
+
+    handleResetForm(){
+        this.setState({
+            email:'',
+            pw: '',
+            displayLoginError: false
+        })
     }
 
     render() {
@@ -51,6 +62,11 @@ export class LoginForm extends React.Component{
                 <div>
                     <button onClick={(e)=> this.handleFormSubmit(e)}>Log In</button>
                 </div>
+                {
+                    !this.state.displayLoginError ? null : <div>
+                        Incorrect password or email
+                    </div>
+                }
             </form>
         )
     }
