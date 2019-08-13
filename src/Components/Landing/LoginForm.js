@@ -1,8 +1,9 @@
 import React from 'react';
 import * as util from '../../utilities/utilities';
 import axios from 'axios';
+import {withRouter} from 'react-router-dom';
 
-export default class LoginForm extends React.Component{
+export class LoginForm extends React.Component{
     constructor(props) {
         super(props);
 
@@ -27,6 +28,7 @@ export default class LoginForm extends React.Component{
 
             axios.post('/api/auth/login', user).then((result) => {
                 console.log('result');
+                this.props.history.push('/dashboard');
                 // TODO:
             })
         } else {
@@ -53,3 +55,5 @@ export default class LoginForm extends React.Component{
         )
     }
 }
+
+export default withRouter(LoginForm);
