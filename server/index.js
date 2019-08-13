@@ -7,6 +7,7 @@ const session = require('express-session');
 const app = express();
 
 const authController = require('./controllers/authController');
+const middleware = require('./middleware/middleware');
 
 dotenv.config();
 
@@ -33,10 +34,11 @@ massive(CONNECTION_STRING).then((dbInstance) => {
     app.set('db', dbInstance);
 });
 
+app.use(middleware.checkSession);
 
 /*****ENDPOINTS*****/
 app.post('/api/auth/register', authController.register);
-
+app.post('/api/auth/login', authController.login);
 
 
 app.listen(SERVER_PORT, ()=> {
