@@ -1,7 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 
-export class Group extends React.Component {
+export class GroupsMain extends React.Component {
     constructor(props) {
         super(props);
 
@@ -13,10 +13,11 @@ export class Group extends React.Component {
     render() {
         return (
             <div>
-                Groups
+                <h1>Groups</h1>
+                <button>Create A New Group</button>
             </div>
         )
     }
 }
 
-export default withRouter(Group);
+export default withRouter(GroupsMain);
