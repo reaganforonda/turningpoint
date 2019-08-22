@@ -7,7 +7,17 @@ export class GroupsMain extends React.Component {
         super(props);
 
         this.state = {
+            displayAddForm: false
+        }
 
+        this.toggleDisplayForm = this.toggleDisplayForm.bind(this);
+    }
+
+    toggleDisplayForm() {
+        if(this.state.displayAddForm) {
+            this.setState({displayAddForm: false});
+        } else {
+            this.setState({displayAddForm: true});
         }
     }
 
@@ -15,8 +25,10 @@ export class GroupsMain extends React.Component {
         return (
             <div>
                 <h1>Groups</h1>
-                <button>Create A New Group</button>
-                <AddGroupForm/>
+                <button onClick={()=>this.toggleDisplayForm()}>Create A New Group</button>
+                {
+                    !this.state.displayAddForm ? null : <AddGroupForm toggleDisplayForm={this.toggleDisplayForm}/>
+                }
             </div>
         )
     }
