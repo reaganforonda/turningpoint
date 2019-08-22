@@ -1,5 +1,6 @@
 import React from 'react';
-
+import {Switch, Route, withRouter} from 'react-router-dom';
+import GroupsMain from '../Groups/GroupsMain';
 
 export default class Dashboard extends React.Component{
     constructor(props) {
@@ -14,6 +15,9 @@ export default class Dashboard extends React.Component{
         return (
             <div>
                 Dashboard
+                <Switch>
+                    <Route path='/dashboard/groups' component={GroupsMain}/>
+                </Switch>
             </div>
         )
     }
