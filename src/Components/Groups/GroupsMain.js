@@ -1,5 +1,6 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
+import AddGroupForm from './AddGroupForm';
 
 export class GroupsMain extends React.Component {
     constructor(props) {
@@ -15,6 +16,7 @@ export class GroupsMain extends React.Component {
             <div>
                 <h1>Groups</h1>
                 <button>Create A New Group</button>
+                <AddGroupForm/>
             </div>
         )
     }
